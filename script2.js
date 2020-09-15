@@ -11,7 +11,7 @@ const randomFunc = {
     rU: randomUp,
     rS: randomSym,
     rN: randomNum
-  };
+  }; 
 
 generateBtn.addEventListener('click', () => {
 

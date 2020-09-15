@@ -2,7 +2,14 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 var passwordId = document.querySelector("password");
- 
+var length;
+var Lw; 
+var Up; 
+var Sym; 
+var Num;
+var Complexity;
+var charPool = [] 
+
 
 // Write password to the #password input
    const valueLw = [
@@ -104,40 +111,34 @@ var passwordId = document.querySelector("password");
   const maxNumber = 128;
 
   const randomFunc = {
-    rL: randomLw,
-    rU: randomUp,
-    rS: randomSym,
-    rN: randomNum
+    Lw: randomLw,
+    Up: randomUp,
+    Sym: randomSym,
+    Num: randomNum
   };
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', () => {
 
-}) 
-
   var complexity = prompt("Chose password length between 8-128 charachters.")
   if (complexity < minNumber || complexity > maxNumber){
-    alert("Type a number between 8-128 for password length!")
-    complexity = null;
+    alert("Type a number between 8-128 for password length!");
   }
 if (isNaN(complexity) === true) {
   alert("select a number between 8-128")
 }
 else {
-  var length = parseInt(complexity);
-  var Lw = confirm("Include lowercase charachters in password?")
-  var Up = confirm("Include uppercase charachters in password?")
-  var Sym = confirm("Include special symbols in password?")
-  var Num = confirm("Include numbers in password?")
+  length = parseInt(complexity);
+  Lw = confirm("Include lowercase charachters in password?")
+  Up = confirm("Include uppercase charachters in password?")
+  Sym = confirm("Include special symbols in password?")
+  Num = confirm("Include numbers in password?")
 }
 
-//logs user input to prompts//
 console.log(Lw,Up,Sym,Num);
 console.log(length)
 
-passwordId.textContent = generatePassword(Lw,Up,Sym,Num,length);
-
-function generatePassword (Lw, Up, Sym, Num, length) {
+function createPassword() {
   let generatePassword = "";
 
   const typesCount = Lw + Up + Sym + Num;
@@ -152,6 +153,39 @@ function generatePassword (Lw, Up, Sym, Num, length) {
     return '';
   }
 
+  if (Lw){charPool = charPool.concat(value.Lw)}
+  function randomLw(){
+    return valueLw[Math.floor(Math.random() * valueLw.length)];
+  }
+  if (Up){charPool = charPool.concat(value.Up)}
+  function randomUp(){
+    return valueUp[Math.floor(Math.random() * valueUp.length)];
+  }
+  if (Sym){charPool = charPool.concat(value.Sym)}
+  function randomSym(){
+    return valueSym[Math.floor(Math.random() * valueSym.length)];
+  }
+  if (Num){charPool = charPool.concat(value.Num)}
+  function randomNum(){
+    return valueNum[Math.floor(Math.random() * valueNum.length)];
+  }
+  
+  for  (var i = 0; i < length; i++) {
+    var randomIndex = Math.floor(Math.random() * charPool.length);
+    var randomCharachter = charPool[randIndex];
+    var password = []; 
+    password.push(randomCharachter); 
+  }
+    function writePassword() {
+      let password = generatePassword();
+      var passwordText = document.querySelector("#password");
+      document.getElementById("#password").value = password
+  
+    passwordText.value = password;
+  
+  }
+  return password.join('')
+
   for(let i = 0; i < length; i += typesCount) {
     typesArr.forEach(type => {
       const funcName = Obeject.keys(type)[0];
@@ -164,6 +198,12 @@ function generatePassword (Lw, Up, Sym, Num, length) {
   console.log(generatePassword)
   
 }
+
+}) 
+
+
+
+
 
 function randomLw(){
   return valueLw[Math.floor(Math.random() * valueLw.length)];
@@ -180,8 +220,9 @@ function randomNum(){
 
 
   function writePassword() {
-    var password = generatePassword();
+    let password = generatePassword();
     var passwordText = document.querySelector("#password");
+    document.getElementById("#password").value = password
 
   passwordText.value = password;
 
