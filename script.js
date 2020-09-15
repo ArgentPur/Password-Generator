@@ -154,48 +154,41 @@ function writePassword() {
   if(typesCount === 0) {
     return '';
   }
-
+ 
   if (Lw){charPool = charPool.concat(value.Lw)}
-  function randomLw(){
+  function Lw(){
     return valueLw[Math.floor(Math.random() * valueLw.length)];
   }
   if (Up){charPool = charPool.concat(value.Up)}
-  function randomUp(){
+  function Up(){
     return valueUp[Math.floor(Math.random() * valueUp.length)];
   }
   if (Sym){charPool = charPool.concat(value.Sym)}
-  function randomSym(){
+  function Sym(){
     return valueSym[Math.floor(Math.random() * valueSym.length)];
   }
   if (Num){charPool = charPool.concat(value.Num)}
-  function randomNum(){
+  function Num(){
     return valueNum[Math.floor(Math.random() * valueNum.length)];
   }
   for(let i = 0; i < length; i += typesCount) {
     typesArr.forEach(type => {
       const funcName = Obeject.keys(type)[0];
       console.log('funcName: ', funcName);
-
+      console.log("randomFunc", randomFunc)
       generatePassword += randomFunc[funcName]();
     });
   }
   for  (var i = 0; i < length; i++) {
-    var randomIndex = Math.floor(Math.random() * charPool.length);
+    var randIndex = Math.floor(Math.random() * charPool.length);
     var randomCharachter = charPool[randIndex];
     var password = []; 
     password.push(randomCharachter); 
   }
-    function writePassword() {
-      let password = generatePassword();
-      var passwordText = document.querySelector("#password");
-      document.getElementById("#password").value = password
-  
-    passwordText.value = password;
-  
-  }
+
   return password.join('')
 
-
+  
 
   
   
@@ -226,8 +219,8 @@ function randomNum(){
     var passwordText = document.querySelector("#password");
     document.getElementById("#password").value = password
 
-  passwordText.value = password;
-
+  passwordText.value = generatePassword();
+  textBox.textContent = generatePassword;
 }
 
 
