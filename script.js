@@ -138,7 +138,9 @@ else {
 console.log(Lw,Up,Sym,Num);
 console.log(length)
 
-function createPassword() {
+if(complexity > 7 && complexity < 129) return {writePassword}
+
+function writePassword() {
   let generatePassword = "";
 
   const typesCount = Lw + Up + Sym + Num;
@@ -169,7 +171,14 @@ function createPassword() {
   function randomNum(){
     return valueNum[Math.floor(Math.random() * valueNum.length)];
   }
-  
+  for(let i = 0; i < length; i += typesCount) {
+    typesArr.forEach(type => {
+      const funcName = Obeject.keys(type)[0];
+      console.log('funcName: ', funcName);
+
+      generatePassword += randomFunc[funcName]();
+    });
+  }
   for  (var i = 0; i < length; i++) {
     var randomIndex = Math.floor(Math.random() * charPool.length);
     var randomCharachter = charPool[randIndex];
@@ -186,16 +195,9 @@ function createPassword() {
   }
   return password.join('')
 
-  for(let i = 0; i < length; i += typesCount) {
-    typesArr.forEach(type => {
-      const funcName = Obeject.keys(type)[0];
-      console.log('funcName: ', funcName);
 
-      generatePassword += randomFunc[funcName]();
-    });
-  }
 
-  console.log(generatePassword)
+  console.log(passwordText)
   
 }
 
