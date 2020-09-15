@@ -9,7 +9,7 @@ var Sym;
 var Num;
 var Complexity;
 var charPool = [] 
-
+var passwordText
 
 // Write password to the #password input
    const valueLw = [
@@ -197,7 +197,7 @@ function writePassword() {
 
 
 
-  console.log(passwordText)
+  
   
 }
 
