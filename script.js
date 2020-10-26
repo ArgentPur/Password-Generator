@@ -124,9 +124,7 @@ generateBtn.addEventListener('click', () => {
   if (complexity < minNumber || complexity > maxNumber){
     alert("Type a number between 8-128 for password length!");
   }
-if (isNaN(complexity) === true) {
-  alert("select a number between 8-128")
-}
+
 else {
   length = parseInt(complexity);
   Lw = confirm("Include lowercase charachters in password?")
