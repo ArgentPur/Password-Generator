@@ -123,6 +123,7 @@ generateBtn.addEventListener('click', () => {
   var complexity = prompt("Chose password length between 8-128 charachters.")
   if (complexity < minNumber || complexity > maxNumber){
     alert("Type a number between 8-128 for password length!");
+    throw console.error();
   }
 
 else {
@@ -136,7 +137,10 @@ else {
 console.log(Lw,Up,Sym,Num);
 console.log(length)
 
-if(complexity > 7 && complexity < 129) return {writePassword}
+if(complexity > 7 && complexity < 129) {
+  return writePassword;
+}
+
 
 function writePassword() {
   let generatePassword = "";
